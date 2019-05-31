@@ -120,6 +120,7 @@
       "Sid": "OpsManagerNetworkLBPermissions",
       "Effect": "Allow",
       "Action": [
+        "elasticloadbalancing:RegisterInstancesWithLoadBalancer",
         "elasticloadbalancing:DescribeLoadBalancers",
         "elasticloadbalancing:DescribeTargetGroups",
         "elasticloadbalancing:DescribeTargetHealth",

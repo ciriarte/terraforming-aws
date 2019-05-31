@@ -44,3 +44,11 @@ resource "tls_locally_signed_cert" "ssl_cert" {
     "server_auth",
   ]
 }
+
+resource "aws_acm_certificate" "cert" {
+  count = "${length(var.ssl_ca_cert) > 0 ? 1 : 0}"
+
+  certificate_body  = "${length(var.ssl_ca_cert) > 0 ? element(concat(tls_locally_signed_cert.ssl_cert.*.cert_pem, list("")), 0) : var.ssl_cert}"
+  certificate_chain = "${var.ssl_ca_cert}"
+  private_key       = "${length(var.ssl_ca_cert) > 0 ? element(concat(tls_private_key.ssl_private_key.*.private_key_pem, list("")), 0) : var.ssl_private_key}"
+}

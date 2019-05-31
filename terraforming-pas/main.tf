@@ -131,6 +131,7 @@ module "pas" {
   iam_ops_manager_role_name = "${module.ops_manager.ops_manager_iam_role_name}"
 
   create_isoseg_resources = "${var.create_isoseg_resources}"
+  isoseg_cert_arn         = "${module.isoseg_certs.cert_arn}"
 
   tags = "${local.actual_tags}"
 }
